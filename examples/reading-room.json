@@ -1,0 +1,123 @@
+{
+  "name": "小型阅览室",
+  "defaults": {
+    "wall_thickness": 240,
+    "wall_height": 3600
+  },
+  "outline": [
+    [
+      0,
+      0
+    ],
+    [
+      9600,
+      0
+    ],
+    [
+      9600,
+      7200
+    ],
+    [
+      0,
+      7200
+    ]
+  ],
+  "openings": [
+    {
+      "id": "D1",
+      "wall": "EXT.0",
+      "kind": "door",
+      "at": 4200,
+      "width": 1200,
+      "height": 2400
+    },
+    {
+      "id": "W1",
+      "wall": "EXT.2",
+      "kind": "window",
+      "at": 1700,
+      "width": 2000,
+      "height": 1500,
+      "sill": 900
+    }
+  ],
+  "rooms": [
+    {
+      "name": "阅览室",
+      "polygon": [
+        [
+          120,
+          120
+        ],
+        [
+          9480,
+          120
+        ],
+        [
+          9480,
+          7080
+        ],
+        [
+          120,
+          7080
+        ]
+      ]
+    }
+  ],
+  "boxes": [
+    {
+      "id": "TABLE",
+      "name": "阅览桌",
+      "at": [
+        2100,
+        3000,
+        0
+      ],
+      "size": [
+        2200,
+        900,
+        750
+      ]
+    },
+    {
+      "id": "SHELF",
+      "name": "书架",
+      "at": [
+        7300,
+        5200,
+        0
+      ],
+      "size": [
+        1800,
+        420,
+        2100
+      ]
+    }
+  ],
+  "roof": {
+    "kind": "flat",
+    "overhang": 600,
+    "thickness": 240
+  },
+  "sections": [
+    {
+      "id": "A",
+      "from": [
+        4800,
+        -1000
+      ],
+      "to": [
+        4800,
+        8200
+      ],
+      "look": "left"
+    }
+  ],
+  "drawing": {
+    "scale": 100,
+    "style": "construction"
+  },
+  "site": {
+    "paving": 0
+  }
+}
