@@ -4,7 +4,11 @@
 
 An open-source, spec-driven 2D architectural drafting preview. A JSON building specification produces editable model-space DXF and matching PDF and PNG sheets.
 
-![小型阅览室示例的首层平面图](examples/reading-room-preview.png)
+## SU / CAD / PS 一体化
+
+Windows 版可从同一份规格生成原生 SketchUp 模型、模型视图、CAD 平立剖和展板。选用 Photoshop 输出时，PSD 保留文字图层和智能对象。也可让 AutoCAD 只读打开生成的 DXF。请看 [桌面联动安装与使用](docs/windows-suite.md)。
+
+![小型阅览室的一体化联动展板](examples/reading-room-suite.png)
 
 ## 快速开始
 
@@ -29,9 +33,9 @@ macOS 和 Linux 的虚拟环境命令位于 `.venv/bin/`。如果系统没有检
 
 ## 发布范围
 
-当前是建筑方案出图预览版。DXF 为毫米制 1:1 模型空间图，A 系列图框与标题栏绘制在 PDF 和 PNG 上。打印时使用 PDF 的实际大小。剖面和立面中的楼梯、室外台阶坡道、家具与材料引注需人工补充。图纸供方案推敲和后续深化，工程交付仍需按项目要求复核。
+当前是建筑方案出图预览版。可先看[样例平面](examples/reading-room-preview.png)。DXF 为毫米制 1:1 模型空间图，A 系列图框与标题栏绘制在 PDF 和 PNG 上。打印时使用 PDF 的实际大小。剖面和立面中的楼梯、室外台阶坡道、家具与材料引注需人工补充。图纸供方案推敲和后续深化，工程交付仍需按项目要求复核。
 
-本版依赖 Python 库运行。SketchUp、AutoCAD、Photoshop 联动和本机素材库属于原工作流。作为 Codex 技能使用时，把整个仓库置于可发现的技能目录，并先在可用的 Python 环境中完成上述安装。使用入口见 [SKILL.md](SKILL.md)。
+二维模式仅依赖 Python 库。Windows 桌面联动需要对应桌面软件。示例用基础颜色和家具体块。作为 Codex 技能使用时，把整个仓库置于可发现的技能目录，并先在可用的 Python 环境中完成上述安装。使用入口见 [SKILL.md](SKILL.md)。
 
 开发验证：安装后运行 `python -m unittest discover -s tests -v`。本版已在 Windows / Python 3.12 试跑。
 

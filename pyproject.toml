@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wish-architectural-cad"
-version = "0.1.0"
+version = "0.2.0"
 description = "Generate editable architectural plans, elevations, and sections from JSON"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -17,8 +17,17 @@ dependencies = [
     "Pillow>=10,<13",
 ]
 
+[project.optional-dependencies]
+desktop = [
+    "mcp>=1.20,<2",
+    "photoshop-python-api>=0.24,<1; sys_platform == 'win32'",
+    "pywin32>=306; sys_platform == 'win32'",
+]
+autocad-mcp = ["autocad-mcp-pro[com]==1.6.0; sys_platform == 'win32'"]
+
 [project.scripts]
 wish-cad = "wish_cad.cli:main"
+wish-cad-mcp = "wish_cad.desktop.mcp_server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

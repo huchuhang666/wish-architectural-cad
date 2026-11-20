@@ -102,19 +102,35 @@ def main(argv=None):
     plan = commands.add_parser("plan", help="Generate DXF, PDF and PNG drawing sheets.")
     plan.add_argument("spec", type=Path)
     plan.add_argument("--output", type=Path, help="New output directory. Existing directories are preserved.")
+    full = commands.add_parser("build", help="Windows: generate SketchUp, CAD and a presentation board.")
+    full.add_argument("spec", type=Path)
+    full.add_argument("--output", type=Path, help="New output directory.")
+    full.add_argument("--ps", action="store_true", help="Generate an editable Photoshop PSD.")
+    full.add_argument("--autocad", action="store_true", help="Open each generated DXF read-only in AutoCAD.")
+    commands.add_parser("desktop-status", help="Verify the active Wish SketchUp bridge.")
     args = parser.parse_args(argv)
 
     try:
+        if args.command == "desktop-status":
+            from .desktop.bridge import RPC
+            with RPC() as bridge:
+                print(json.dumps(bridge.hello, ensure_ascii=False))
+            return 0
         model = spec.load(args.spec)
         validate_release_spec(model)
         if args.command == "check":
             print(json.dumps(spec.summary(model), ensure_ascii=False, indent=2))
             return 0
-        report, report_path = build_plan(model, args.output or model.out_dir)
-        print(f"{len(report['sheets'])} sheet(s). Report: {report_path}")
+        output = args.output or model.out_dir
+        if args.command == "build":
+            from .desktop.workflow import run
+            report, report_path = run(model, output, ps=args.ps, autocad=args.autocad)
+        else:
+            report, report_path = build_plan(model, output)
+        print(f"Report: {report_path}")
         for issue in report["issues"]:
             print(issue, file=sys.stderr)
         return 0 if report["ok"] else 1
-    except (OSError, ValueError, TypeError, KeyError, IndexError, AttributeError) as exc:
+    except (OSError, ValueError, TypeError, KeyError, IndexError, AttributeError, RuntimeError, ImportError) as exc:
         print(f"wish-cad: {exc}", file=sys.stderr)
         return 1

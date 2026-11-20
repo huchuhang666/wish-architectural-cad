@@ -1,0 +1,19 @@
+# Copy the desired entries into your Codex MCP configuration.
+# Replace these illustrative Windows paths with your installation and workspace.
+[mcp_servers.wish]
+command = 'C:\Path\To\Wish\.venv\Scripts\wish-cad-mcp.exe'
+startup_timeout_sec = 30
+tool_timeout_sec = 900
+
+# Optional direct AutoCAD editing, separate from the Wish drawing generator.
+[mcp_servers.cad_local]
+command = 'C:\Path\To\Wish\.venv\Scripts\autocad-mcp.exe'
+startup_timeout_sec = 30
+tool_timeout_sec = 90
+
+[mcp_servers.cad_local.env]
+AUTOCAD_MCP_BACKEND = 'com'
+CAD_PROGID = 'AutoCAD.Application'
+ALLOWED_PATHS = 'C:\Path\To\Your\DrawingWorkspace'
+DISCOVERY_MODE = 'search'
+FASTMCP_SHOW_SERVER_BANNER = 'false'
